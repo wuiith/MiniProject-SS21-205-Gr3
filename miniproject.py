@@ -15,7 +15,7 @@ def show_devices(devices):
     if len(devices) == 0:
         logging.warning("Danh sach thiet bi dang trong, khong co du lieu de hien thi.")
         print("He thong hien chua co thiet bi giam sat nao!")
-        return
+        return (0.0, 0.0, 0.0)
  
     print("--- Danh Sách Thiết Bị Giám Sát ---")
     print(f"{'MA TB':<8} | {'VI TRI PHAN XUONG':<22} | {'CHI SO CU':>10} | {'CHI SO MOI':>10} | {'TRANG THAI'}")
@@ -25,7 +25,7 @@ def show_devices(devices):
         print(f"{item['id']:<8} | {item['location']:<22} | {item['old_index']:>10} | {item['new_index']:>10} | {item['status']}")
 
     logging.info(f"Hien thi thanh cong {len(devices)} thiet bi.")
-
+    return devices
 
 # Chức năng 2
 def update_indices(devices):
