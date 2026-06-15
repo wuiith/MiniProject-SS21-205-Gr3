@@ -7,6 +7,26 @@ logging.basicConfig(
     format = '%(asctime)s - %(levelname)s - %(message)s'
 )
 
+
+# cn1
+def show_devices(devices):
+    logging.info("Nguoi dung yeu cau xem danh sach thiet bi.")
+
+    if len(devices) == 0:
+        logging.warning("Danh sach thiet bi dang trong, khong co du lieu de hien thi.")
+        print("He thong hien chua co thiet bi giam sat nao!")
+        return
+ 
+    print("--- Danh Sách Thiết Bị Giám Sát ---")
+    print(f"{'MA TB':<8} | {'VI TRI PHAN XUONG':<22} | {'CHI SO CU':>10} | {'CHI SO MOI':>10} | {'TRANG THAI'}")
+    print("-" * 70)
+ 
+    for item in devices:
+        print(f"{item['id']:<8} | {item['location']:<22} | {item['old_index']:>10} | {item['new_index']:>10} | {item['status']}")
+
+    logging.info(f"Hien thi thanh cong {len(devices)} thiet bi.")
+
+
 # Chức năng 2
 def update_indices(devices):
     device_id = input("Nhập mã thiết bị: ").strip()
@@ -50,6 +70,7 @@ def update_indices(devices):
         f"New Index: {new_index}"
     )
 
+
 # chức năng 4
 def calculate_energy_financials(devices):
     logging.debug(f"Calculating energy financials for {len(devices)} devices.")
@@ -71,6 +92,7 @@ def calculate_energy_financials(devices):
     final_cost = base_cost * (1 - discount_percent / 100)
     return (total_kwh, discount_percent, final_cost)
 
+
 def show_menu():
     print("\n" + "="*50)
     print("      SMART ENERGY MONITOR - PHÒNG CƠ ĐIỆN      ")
@@ -82,11 +104,13 @@ def show_menu():
     print("5. Thoát chương trình")
     print("="*50)
 
+
 def main():
     devices = [
         {'id': 'M01', 'location': 'Mechanical Shop A', 'old_index': 1200, 'new_index': 4500, 'status': 'Normal'},
         {'id': 'M02', 'location': 'Assembly Line B', 'old_index': 2300, 'new_index': 8500, 'status': 'Overload'}
     ]
+
     
     while True:
         show_menu()
